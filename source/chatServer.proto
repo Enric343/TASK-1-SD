@@ -1,0 +1,21 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+// Datos del usuario para conectarse
+message Socket {
+  string ip = 1;
+  string port = 2;
+}
+
+// Mensaje a enviar
+message Message {
+  string text = 1; // Texto del mensaje
+}
+
+// Definición del servicio de chat
+service ChatService {
+  // Para conectarse con el otro usuario
+  rpc ConnectToUser (Socket) returns (google.protobuf.Empty) {}
+  // Para enviar un mensaje al otro usuario
+  rpc SendMessage (Message) returns (google.protobuf.Empty) {}
+}
